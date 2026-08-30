@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/webp" href="img3.webp">
+
+    <title>RANSOM</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            background: #f31622;
+
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* =====================================
+           NORMAL SCREEN
+           ===================================== */
+
+        #screen {
+            position: relative;
+
+            width: 100vw;
+            height: 100vh;
+
+            background: #f31622;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================
+           WEAK NORMAL SCREEN SHAKE
+           ===================================== */
+
+        #screen.normalShake {
+            animation: weakShake 0.8s infinite;
+        }
+
+        @keyframes weakShake {
+
+            0% {
+                transform: translate(0px, 0px);
+            }
+
+            20% {
+                transform: translate(-1px, 1px);
+            }
+
+            40% {
+                transform: translate(1px, -1px);
+            }
+
+            60% {
+                transform: translate(-1px, 0px);
+            }
+
+            80% {
+                transform: translate(1px, 1px);
+            }
+
+            100% {
+                transform: translate(0px, 0px);
+            }
+
+        }
+
+
+        /* =====================================
+           STRONG JUMPSCARE SHAKE
+           ===================================== */
+
+        body.jumpscareShake {
+            animation: jumpscareShake 0.08s infinite;
+        }
+
+        @keyframes jumpscareShake {
+
+            0% {
+                transform: translate(0px, 0px);
+            }
+
+            10% {
+                transform: translate(-7px, 5px);
+            }
+
+            20% {
+                transform: translate(8px, -6px);
+            }
+
+            30% {
+                transform: translate(-6px, -7px);
+            }
+
+            40% {
+                transform: translate(7px, 6px);
+            }
+
+            50% {
+                transform: translate(-8px, -4px);
+            }
+
+            60% {
+                transform: translate(5px, 7px);
+            }
+
+            70% {
+                transform: translate(-7px, 3px);
+            }
+
+            80% {
+                transform: translate(6px, -6px);
+            }
+
+            90% {
+                transform: translate(-4px, 5px);
+            }
+
+            100% {
+                transform: translate(0px, 0px);
+            }
+
+        }
+
+
+        /* =====================================
+           THANK YOU SHAKE
+           ===================================== */
+
+        body.thankYouShake {
+            animation: thankYouShake 0.05s infinite;
+        }
+
+        @keyframes thankYouShake {
+
+            0% {
+                transform: translate(0px, 0px);
+            }
+
+            20% {
+                transform: translate(-4px, 2px);
+            }
+
+            40% {
+                transform: translate(3px, -3px);
+            }
+
+            60% {
+                transform: translate(-3px, -2px);
+            }
+
+            80% {
+                transform: translate(4px, 2px);
+            }
+
+            100% {
+                transform: translate(0px, 0px);
+            }
+
+        }
+
+
+        /* =====================================
+           RED STATIC RING
+           ===================================== */
+
+        #staticRing {
+            position: fixed;
+
+            left: 50%;
+            top: 50%;
+
+            width: 150vmax;
+            height: 150vmax;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            z-index: 10;
+
+            opacity: 0.45;
+
+            background:
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg 3deg,
+                    rgba(255, 0, 0, 0.45) 3deg 5deg,
+                    transparent 5deg 8deg
+                );
+
+            -webkit-mask:
+                radial-gradient(
+                    transparent 0%,
+                    transparent 67%,
+                    black 68%,
+                    black 71%,
+                    transparent 72%
+                );
+
+            mask:
+                radial-gradient(
+                    transparent 0%,
+                    transparent 67%,
+                    black 68%,
+                    black 71%,
+                    transparent 72%
+                );
+
+            animation:
+                staticRotate 1.1s linear infinite,
+                staticFlicker 0.12s steps(2) infinite;
+        }
+
+
+        @keyframes staticRotate {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(0deg);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(360deg);
+            }
+
+        }
+
+
+        @keyframes staticFlicker {
+
+            0% {
+                opacity: 0.25;
+            }
+
+            50% {
+                opacity: 0.55;
+            }
+
+            100% {
+                opacity: 0.35;
+            }
+
+        }
+
+
+        /* =====================================
+           GREEN STATIC
+           ===================================== */
+
+        #staticRing.greenStatic {
+            background:
+                repeating-conic-gradient(
+                    from 0deg,
+                    transparent 0deg 3deg,
+                    rgba(0, 255, 80, 0.45) 3deg 5deg,
+                    transparent 5deg 8deg
+                );
+        }
+
+
+        /* =====================================
+           IMG1
+           ===================================== */
+
+        #img1 {
+            position: absolute;
+
+            left: 5%;
+            top: 2%;
+
+            width: 190px;
+            height: 190px;
+
+            object-fit: contain;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================
+           TITLE
+           ===================================== */
+
+        #title {
+            position: absolute;
+
+            left: 43%;
+            top: 10%;
+
+            color: white;
+
+            font-size: clamp(28px, 4vw, 38px);
+
+            font-weight: bold;
+
+            line-height: 1.35;
+
+            white-space: nowrap;
+
+            z-index: 2;
+        }
+
+
+        /* =====================================
+           WARNING
+           ===================================== */
+
+        #warning {
+            position: absolute;
+
+            left: 4.5%;
+            top: 48%;
+
+            width: 87%;
+            height: 125px;
+
+            background: black;
+
+            border: 5px solid white;
+
+            padding: 25px 18px;
+
+            color: white;
+
+            font-size: clamp(13px, 1.7vw, 16px);
+
+            font-weight: bold;
+
+            line-height: 1.45;
+
+            z-index: 2;
+        }
+
+
+        #warning .red {
+            color: #d60019;
+        }
+
+
+        /* =====================================
+           MONEY BOX
+           ===================================== */
+
+        #moneyBox {
+            position: absolute;
+
+            left: 1.5%;
+            bottom: 5%;
+
+            width: 160px;
+            height: 85px;
+
+            background: black;
+
+            border: 4px solid #ffe500;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 10px;
+
+            z-index: 20;
+        }
+
+
+        #money {
+            color: #ffe500;
+
+            font-size: 36px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           ORIGINAL IMG2
+           ===================================== */
+
+        #img2 {
+            position: absolute;
+
+            left: 84px;
+            top: 18px;
+
+            width: 58px;
+            height: 42px;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================
+           RANDOM IMG2
+           ===================================== */
+
+        .randomImg2 {
+            position: absolute;
+
+            width: 58px;
+            height: 42px;
+
+            object-fit: contain;
+
+            cursor: pointer;
+
+            z-index: 30;
+        }
+
+
+        /* =====================================
+           TIMER BOX
+           ===================================== */
+
+        #timerBox {
+            position: absolute;
+
+            left: 36%;
+            bottom: 7%;
+
+            width: 47%;
+            height: 75px;
+
+            border: 5px solid white;
+
+            display: flex;
+
+            align-items: center;
+
+            padding-left: 12px;
+
+            z-index: 2;
+        }
+
+
+        #timer {
+            color: black;
+
+            font-size: clamp(28px, 4vw, 38px);
+
+            font-weight: bold;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================
+           PLAY PANEL
+           ===================================== */
+
+        #startPanel {
+            position: absolute;
+
+            right: 7%;
+            top: 12%;
+
+            width: 390px;
+
+            text-align: center;
+
+            background: transparent;
+
+            z-index: 50;
+        }
+
+
+        #startText {
+            color: white;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        #playButton {
+            padding: 10px 28px;
+
+            font-size: 20px;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-weight: bold;
+
+            background: white;
+
+            color: black;
+
+            border: 2px solid black;
+
+            cursor: pointer;
+        }
+
+
+        #playButton:hover {
+            background: #eeeeee;
+        }
+
+
+        #playButton:active {
+            background: #cccccc;
+        }
+
+
+        #status {
+            margin-top: 15px;
+
+            color: white;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        #jumpscareStatus {
+            margin-top: 8px;
+
+            color: white;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           IMG3
+           ===================================== */
+
+        #img3 {
+            position: fixed;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 90vw;
+            height: 90vh;
+
+            object-fit: contain;
+
+            display: none;
+
+            z-index: 100;
+        }
+
+
+        /* =====================================
+           THANK YOU SCREEN
+           ===================================== */
+
+        #thankYouScreen {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            background: #00a000;
+
+            display: none;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 1000;
+        }
+
+
+        #thankYou {
+            color: white;
+
+            font-size: clamp(70px, 12vw, 180px);
+
+            font-weight: bold;
+
+            text-align: center;
+
+            white-space: nowrap;
+        }
+
+
+        /* =====================================
+           THUMBS UP
+           ===================================== */
+
+        #thumbsUp {
+            width: 150px;
+            height: 150px;
+
+            object-fit: contain;
+
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         STATIC RING
+         ===================================== -->
+
+    <div id="staticRing"></div>
+
+
+    <!-- =====================================
+         MAIN SCREEN
+         ===================================== -->
+
+    <div id="screen">
+
+
+        <img
+            id="img1"
+            src="img.webp"
+            alt="IMG"
+        >
+
+
+        <div id="title">
+
+            YOUR ITEMS<br>
+            HAVE BEEN<br>
+            ENCRYPTED
+
+        </div>
+
+
+        <div id="warning">
+
+            IF YOU DO NOT PAY THIS RANSOM BEFORE THE TIMER<br>
+
+            ENDS, YOUR ITEMS WILL BE
+
+            <span class="red">
+                UNRECOVERABLE AT ANY MEANS.
+            </span>
+
+        </div>
+
+
+        <div id="moneyBox">
+
+            <div id="money">
+                500
+            </div>
+
+            <img
+                id="img2"
+                src="img2.webp"
+                alt="IMG2"
+            >
+
+        </div>
+
+
+        <div id="timerBox">
+
+            <div id="timer">
+                TIME: 1:00
+            </div>
+
+        </div>
+
+
+        <div id="startPanel">
+
+            <div id="startText">
+
+                Press the "PLAY" button to start the
+                Timer and Music.<br>
+
+                This wont do anything this is just a test.
+
+            </div>
+
+
+            <button id="playButton">
+                PLAY
+            </button>
+
+
+            <div id="status">
+                Timer: NOT STARTED
+            </div>
+
+
+            <div id="jumpscareStatus">
+                Jumpscare at 0:00: DISABLED
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         JUMPSCARE
+         ===================================== -->
+
+    <img
+        id="img3"
+        src="img3.webp"
+        alt="IMG3"
+    >
+
+
+    <!-- =====================================
+         THANK YOU
+         ===================================== -->
+
+    <div id="thankYouScreen">
+
+        <div id="thankYou">
+            THANK YOU!
+        </div>
+
+
+        <img
+            id="thumbsUp"
+            src="thumbs up.png"
+            alt="Thumbs Up"
+        >
+
+    </div>
+
+
+    <!-- =====================================
+         ATTACK MUSIC
+         ===================================== -->
+
+    <audio
+        id="ransomAudio"
+        src="ransom attack.mp3"
+        preload="auto"
+        loop="false">
+    </audio>
+
+
+    <!-- =====================================
+         LEAVE MUSIC
+         ===================================== -->
+
+    <audio
+        id="leaveAudio"
+        src="ransom leave.mp3"
+        preload="auto"
+        loop="false">
+    </audio>
+
+
+    <script>
+
+        /* =====================================
+           ELEMENTS
+           ===================================== */
+
+        const screen =
+            document.getElementById("screen");
+
+        const timer =
+            document.getElementById("timer");
+
+        const img3 =
+            document.getElementById("img3");
+
+        const audio =
+            document.getElementById("ransomAudio");
+
+        const leaveAudio =
+            document.getElementById("leaveAudio");
+
+        const playButton =
+            document.getElementById("playButton");
+
+        const startPanel =
+            document.getElementById("startPanel");
+
+        const status =
+            document.getElementById("status");
+
+        const jumpscareStatus =
+            document.getElementById("jumpscareStatus");
+
+        const money =
+            document.getElementById("money");
+
+        const thankYouScreen =
+            document.getElementById("thankYouScreen");
+
+        const staticRing =
+            document.getElementById("staticRing");
+
+
+        /* =====================================
+           VARIABLES
+           ===================================== */
+
+        let seconds = 60;
+
+        let moneyAmount = 500;
+
+        let timerStarted = false;
+
+        let jumpscareEnabled = false;
+
+        let countdown = null;
+
+        let imageSpawner = null;
+
+        let gameFinished = false;
+
+
+        /* =====================================
+           AUDIO
+           ===================================== */
+
+        audio.loop = false;
+
+        leaveAudio.loop = false;
+
+
+        audio.addEventListener("ended", () => {
+
+            audio.pause();
+
+        });
+
+
+        leaveAudio.addEventListener("ended", () => {
+
+            leaveAudio.pause();
+
+        });
+
+
+        /* =====================================
+           UPDATE MONEY
+           ===================================== */
+
+        function updateMoney() {
+
+            money.textContent =
+                moneyAmount;
+
+        }
+
+
+        /* =====================================
+           PAYMENT WEIGHTS
+           ===================================== */
+
+        function getRandomPayment() {
+
+            const choices = [
+
+                {
+                    amount: 10,
+                    weight: 40
+                },
+
+                {
+                    amount: 20,
+                    weight: 50
+                },
+
+                {
+                    amount: 30,
+                    weight: 60
+                },
+
+                {
+                    amount: 50,
+                    weight: 38
+                },
+
+                {
+                    amount: 70,
+                    weight: 34
+                },
+
+                {
+                    amount: 90,
+                    weight: 30
+                }
+
+            ];
+
+
+            let totalWeight = 0;
+
+
+            for (const choice of choices) {
+
+                totalWeight +=
+                    choice.weight;
+
+            }
+
+
+            let random =
+                Math.random() *
+                totalWeight;
+
+
+            for (const choice of choices) {
+
+                random -=
+                    choice.weight;
+
+
+                if (random <= 0) {
+
+                    return choice.amount;
+
+                }
+
+            }
+
+
+            return 20;
+
+        }
+
+
+        /* =====================================
+           CREATE RANDOM IMG2
+           ===================================== */
+
+        function createRandomImg2() {
+
+            if (
+                !timerStarted ||
+                moneyAmount <= 0 ||
+                gameFinished
+            ) {
+                return;
+            }
+
+
+            const newImage =
+                document.createElement("img");
+
+
+            newImage.src =
+                "img2.webp";
+
+
+            newImage.className =
+                "randomImg2";
+
+
+            newImage.alt =
+                "Clickable IMG2";
+
+
+            const maxX =
+                window.innerWidth - 80;
+
+
+            const maxY =
+                window.innerHeight - 60;
+
+
+            const randomX =
+                Math.random() *
+                Math.max(20, maxX);
+
+
+            const randomY =
+                Math.random() *
+                Math.max(20, maxY);
+
+
+            newImage.style.left =
+                randomX + "px";
+
+
+            newImage.style.top =
+                randomY + "px";
+
+
+            newImage.addEventListener(
+                "click",
+                () => {
+
+                    if (gameFinished) {
+                        return;
+                    }
+
+
+                    const payment =
+                        getRandomPayment();
+
+
+                    moneyAmount -=
+                        payment;
+
+
+                    if (moneyAmount < 0) {
+
+                        moneyAmount = 0;
+
+                    }
+
+
+                    updateMoney();
+
+
+                    newImage.remove();
+
+
+                    if (moneyAmount === 0) {
+
+                        finishPayment();
+
+                    }
+
+                }
+            );
+
+
+            screen.appendChild(newImage);
+
+
+            setTimeout(() => {
+
+                if (newImage.parentNode) {
+
+                    newImage.remove();
+
+                }
+
+            }, 5000);
+
+        }
+
+
+        /* =====================================
+           IMAGE SPAWNER
+           ===================================== */
+
+        function startImageSpawner() {
+
+            setTimeout(() => {
+
+                createRandomImg2();
+
+            }, 1500);
+
+
+            function scheduleNext() {
+
+                if (gameFinished) {
+                    return;
+                }
+
+
+                const delay =
+                    Math.floor(
+                        Math.random() * 2000
+                    ) + 2000;
+
+
+                imageSpawner =
+                    setTimeout(() => {
+
+                        createRandomImg2();
+
+                        scheduleNext();
+
+                    }, delay);
+
+            }
+
+
+            scheduleNext();
+
+        }
+
+
+        /* =====================================
+           UPDATE TIMER
+           ===================================== */
+
+        function updateTimer() {
+
+            const minutes =
+                Math.floor(seconds / 60);
+
+
+            const secs =
+                seconds % 60;
+
+
+            timer.textContent =
+                "TIME: " +
+                minutes +
+                ":" +
+                String(secs).padStart(2, "0");
+
+        }
+
+
+        /* =====================================
+           START GAME
+           ===================================== */
+
+        function startGame() {
+
+            if (timerStarted) {
+                return;
+            }
+
+
+            timerStarted = true;
+
+            jumpscareEnabled = true;
+
+
+            status.textContent =
+                "Timer: RUNNING";
+
+
+            jumpscareStatus.textContent =
+                "Jumpscare at 0:00: ENABLED";
+
+
+            playButton.disabled = true;
+
+            playButton.textContent =
+                "PLAYING";
+
+
+            startPanel.style.display =
+                "none";
+
+
+            /*
+                Begin weak normal shake.
+            */
+
+            screen.classList.add(
+                "normalShake"
+            );
+
+
+            /*
+                Start attack music.
+            */
+
+            audio.currentTime = 0;
+
+            audio.loop = false;
+
+            audio.play().catch((error) => {
+
+                console.log(
+                    "Audio error:",
+                    error
+                );
+
+            });
+
+
+            startCountdown();
+
+            startImageSpawner();
+
+        }
+
+
+        /* =====================================
+           COUNTDOWN
+           ===================================== */
+
+        function startCountdown() {
+
+            updateTimer();
+
+
+            countdown =
+                setInterval(() => {
+
+                    seconds--;
+
+
+                    if (seconds < 0) {
+
+                        seconds = 0;
+
+                    }
+
+
+                    updateTimer();
+
+
+                    if (seconds === 0) {
+
+                        clearInterval(
+                            countdown
+                        );
+
+
+                        if (jumpscareEnabled) {
+
+                            finishScreen();
+
+                        }
+
+                    }
+
+                }, 1000);
+
+        }
+
+
+        /* =====================================
+           PAYMENT COMPLETE
+           ===================================== */
+
+        function finishPayment() {
+
+            if (gameFinished) {
+                return;
+            }
+
+
+            gameFinished = true;
+
+
+            /*
+                Stop timer.
+            */
+
+            if (countdown !== null) {
+
+                clearInterval(
+                    countdown
+                );
+
+            }
+
+
+            /*
+                Stop image spawning.
+            */
+
+            if (imageSpawner !== null) {
+
+                clearTimeout(
+                    imageSpawner
+                );
+
+            }
+
+
+            /*
+                Stop normal shake.
+            */
+
+            screen.classList.remove(
+                "normalShake"
+            );
+
+
+            /*
+                Stop attack music.
+            */
+
+            audio.pause();
+
+            audio.currentTime = 0;
+
+
+            /*
+                Remove normal interface.
+            */
+
+            screen.innerHTML = "";
+
+
+            /*
+                Hide jumpscare.
+            */
+
+            img3.style.display =
+                "none";
+
+
+            /*
+                Green background.
+            */
+
+            document.body.style.background =
+                "#00a000";
+
+
+            /*
+                Change static from red
+                to green.
+            */
+
+            staticRing.classList.add(
+                "greenStatic"
+            );
+
+
+            /*
+                Show THANK YOU screen.
+            */
+
+            thankYouScreen.style.display =
+                "flex";
+
+
+            /*
+                Shake THANK YOU scene
+                for exactly 0.4 seconds.
+            */
+
+            document.body.classList.add(
+                "thankYouShake"
+            );
+
+
+            setTimeout(() => {
+
+                document.body.classList.remove(
+                    "thankYouShake"
+                );
+
+            }, 400);
+
+
+            /*
+                Play leave music once.
+            */
+
+            leaveAudio.currentTime = 0;
+
+            leaveAudio.loop = false;
+
+            leaveAudio.play().catch((error) => {
+
+                console.log(
+                    "Leave audio error:",
+                    error
+                );
+
+            });
+
+        }
+
+
+        /* =====================================
+           TIMER REACHES 0
+           ===================================== */
+
+        function finishScreen() {
+
+            if (gameFinished) {
+                return;
+            }
+
+
+            gameFinished = true;
+
+
+            /*
+                Stop future IMG2 spawning.
+            */
+
+            if (imageSpawner !== null) {
+
+                clearTimeout(
+                    imageSpawner
+                );
+
+            }
+
+
+            /*
+                Stop weak shake.
+            */
+
+            screen.classList.remove(
+                "normalShake"
+            );
+
+
+            /*
+                Remove normal interface.
+            */
+
+            screen.innerHTML = "";
+
+
+            /*
+                Keep red background.
+            */
+
+            document.body.style.background =
+                "#f31622";
+
+
+            /*
+                Wait 1 second.
+            */
+
+            setTimeout(() => {
+
+
+                /*
+                    Show IMG3.
+                */
+
+                img3.style.display =
+                    "block";
+
+
+                /*
+                    Shake screen for
+                    2 seconds.
+                */
+
+                document.body.classList.add(
+                    "jumpscareShake"
+                );
+
+
+                setTimeout(() => {
+
+                    document.body.classList.remove(
+                        "jumpscareShake"
+                    );
+
+                }, 2000);
+
+
+                /*
+                    Keep IMG3 visible
+                    for 2 seconds.
+                */
+
+                setTimeout(() => {
+
+                    img3.style.display =
+                        "none";
+
+                }, 2000);
+
+
+            }, 1000);
+
+        }
+
+
+        /* =====================================
+           PLAY BUTTON
+           ===================================== */
+
+        playButton.addEventListener(
+            "click",
+            startGame
+        );
+
+
+        /* =====================================
+           INITIAL STATE
+           ===================================== */
+
+        updateTimer();
+
+        updateMoney();
+
+
+        status.textContent =
+            "Timer: NOT STARTED";
+
+
+        jumpscareStatus.textContent =
+            "Jumpscare at 0:00: DISABLED";
+
+    </script>
+
+</body>
+</html>
